@@ -1,0 +1,47 @@
+<style>
+.main-nav a {
+  color: blue
+}
+.main-nav a.active{
+  color: red
+}
+.post.featured{
+  background-color: yellow;
+}
+article p:first-of-type{
+  font-weight: bold;
+}
+li:nth-child(even){
+background-color: lightblue;
+}
+
+/* Spécificité croissante :
+   p < .text < p.text < #main < #main .text p
+*/
+
+/* Si même spécificité → la dernière règle gagne */
+
+/* Éviter !important :
+   - casse la logique CSS
+   - difficile à maintenir
+*/
+
+</style>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="/" class="active">Accueil</a></li>
+    <li><a href="/about">À propos</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <article class="post featured">
+    <h2>Premier article</h2>
+    <p>Contenu...</p>
+  </article>
+  <article class="post">
+    <h2>Deuxième article</h2>
+    <p>Contenu...</p>
+  </article>
+</main>

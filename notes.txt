@@ -1,0 +1,5 @@
+.class → select class
+.class1.class2 → same element with both classes
+parent child → elements inside
+:first-of-type → first element of that type
+:nth-child(even) → even positions
