@@ -1,47 +1,408 @@
-<style>
-.main-nav a {
-  color: blue
-}
-.main-nav a.active{
-  color: red
-}
-.post.featured{
-  background-color: yellow;
-}
-article p:first-of-type{
-  font-weight: bold;
-}
-li:nth-child(even){
-background-color: lightblue;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP CSS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* Spécificité croissante :
-   p < .text < p.text < #main < #main .text p
-*/
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.5;
+      background: white;
+      color: black;
+    }
 
-/* Si même spécificité → la dernière règle gagne */
+    h1, h2, h3 {
+      margin-top: 0;
+    }
 
-/* Éviter !important :
-   - casse la logique CSS
-   - difficile à maintenir
-*/
+    section {
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+    }
 
-</style>
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+    }
 
-<nav class="main-nav">
-  <ul>
-    <li><a href="/" class="active">Accueil</a></li>
-    <li><a href="/about">À propos</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
-<main>
-  <article class="post featured">
-    <h2>Premier article</h2>
-    <p>Contenu...</p>
-  </article>
-  <article class="post">
-    <h2>Deuxième article</h2>
-    <p>Contenu...</p>
-  </article>
-</main>
+    .main-nav a {
+      color: blue;
+    }
+
+    .main-nav a.active {
+      color: red;
+      font-weight: bold;
+    }
+
+    .post.featured {
+      background: #fff3b0;
+    }
+
+    article p:first-of-type {
+      font-weight: bold;
+    }
+
+    .selector-demo li:nth-child(even) {
+      background: #e7f0ff;
+    }
+
+    .box {
+      width: 300px;
+      padding: 20px;
+      border: 5px solid #333;
+      margin: 15px 0;
+      background: #eee;
+    }
+
+    .border-box {
+      box-sizing: border-box;
+    }
+
+    .center-horizontal {
+      width: 600px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: #eee;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .center-vertical {
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    .center-vertical .item {
+      width: 200px;
+      padding: 10px;
+      background: #eee;
+      text-align: center;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .cards {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1 1 200px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 180px;
+    }
+
+    .card-link {
+      margin-top: auto;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .grid-cards div {
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      gap: 10px;
+    }
+
+    .header { grid-area: header; border: 1px solid #ccc; padding: 10px; }
+    .sidebar { grid-area: sidebar; border: 1px solid #ccc; padding: 10px; }
+    .main { grid-area: main; border: 1px solid #ccc; padding: 10px; }
+    .footer { grid-area: footer; border: 1px solid #ccc; padding: 10px; }
+
+    .responsive-box {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: black;
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    .content {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .sidebar-demo {
+      display: none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .theme-light,
+    .theme-dark {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .theme-dark {
+      background: #222;
+      color: white;
+    }
+
+    .button-demo {
+      padding: 10px 15px;
+      border: 1px solid #333;
+      background: #f4f4f4;
+      transition: 0.3s;
+    }
+
+    .button-demo:hover {
+      background: #ddd;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 5px solid #ccc;
+      border-top: 5px solid #333;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (min-width: 768px) {
+      .nav-menu {
+        flex-direction: row;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+      }
+
+      .sidebar-demo {
+        display: block;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "main"
+          "sidebar"
+          "footer";
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>TP CSS</h1>
+  <p>Page simple avec les concepts principaux du TP.</p>
+
+  <section class="selector-demo">
+    <h2>Exercice 1 : Selecteurs et specificite</h2>
+    <p>Exemples de selecteurs :</p>
+    <pre><code>.main-nav a
+.main-nav a.active
+.post.featured
+article p:first-of-type
+li:nth-child(even)</code></pre>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/" class="active">Accueil</a></li>
+        <li><a href="/about">A propos</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <article class="post featured">
+      <h3>Premier article</h3>
+      <p>Premier paragraphe</p>
+      <p>Contenu normal</p>
+    </article>
+
+    <article class="post">
+      <h3>Deuxieme article</h3>
+      <p>Premier paragraphe</p>
+      <p>Contenu normal</p>
+    </article>
+
+    <p>Specificite croissante : <code>p</code> &lt; <code>.text</code> &lt; <code>p.text</code> &lt; <code>#main</code> &lt; <code>#main .text p</code></p>
+  </section>
+
+  <section>
+    <h2>Exercice 2 : Box Model</h2>
+    <p><strong>content-box :</strong> largeur totale = 350px</p>
+    <div class="box">Box content-box</div>
+
+    <p><strong>border-box :</strong> largeur totale = 300px</p>
+    <div class="box border-box">Box border-box</div>
+
+    <pre><code>*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}</code></pre>
+
+    <div class="center-horizontal">Element centre horizontalement</div>
+    <div class="center-vertical">
+      <div class="item">Centre avec Flexbox</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Exercice 3 : Flexbox</h2>
+    <nav class="navbar">
+      <div>MonSite</div>
+      <ul class="nav-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <br>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Carte 1</h3>
+        <p>Contenu court.</p>
+        <a href="#" class="card-link">Lien</a>
+      </div>
+      <div class="card">
+        <h3>Carte 2</h3>
+        <p>Contenu plus long pour voir que le lien reste en bas.</p>
+        <a href="#" class="card-link">Lien</a>
+      </div>
+      <div class="card">
+        <h3>Carte 3</h3>
+        <p>Contenu moyen.</p>
+        <a href="#" class="card-link">Lien</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Exercice 4 : CSS Grid</h2>
+    <div class="grid-cards">
+      <div>Carte 1</div>
+      <div>Carte 2</div>
+      <div>Carte 3</div>
+      <div>Carte 4</div>
+      <div>Carte 5</div>
+      <div>Carte 6</div>
+    </div>
+
+    <br>
+
+    <div class="page-layout">
+      <header class="header">Header</header>
+      <nav class="sidebar">Sidebar</nav>
+      <main class="main">Main</main>
+      <footer class="footer">Footer</footer>
+    </div>
+  </section>
+
+  <section>
+    <h2>Exercice 5 : Responsive Design</h2>
+    <div class="responsive-box">
+      <div class="nav-menu">
+        <a href="#">Accueil</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="content">
+        <div class="main">Contenu principal</div>
+        <div class="sidebar-demo">Sidebar</div>
+      </div>
+    </div>
+    <p>Mobile first : on commence par le style mobile puis on ajoute les media queries avec <code>min-width</code>.</p>
+  </section>
+
+  <section>
+    <h2>Exercice 6 : Variables CSS et themes</h2>
+
+    <div class="theme-light">Theme clair</div>
+    <div class="theme-dark">Theme sombre</div>
+  </section>
+
+  <section>
+    <h2>Exercice 7 : Transitions et animations</h2>
+    <button class="button-demo" type="button">Bouton</button>
+    <div class="spinner"></div>
+  </section>
+
+  <section>
+    <h2>Exercice 8 : Quiz</h2>
+    <ul>
+      <li>1. <strong>#header a</strong></li>
+      <li>2. <strong>200px</strong></li>
+      <li>3. <strong>justify-content: center et align-items: center</strong></li>
+      <li>4. <strong>1 fraction de l'espace disponible</strong></li>
+      <li>5. <strong>min-width</strong></li>
+    </ul>
+  </section>
+</body>
+</html>
